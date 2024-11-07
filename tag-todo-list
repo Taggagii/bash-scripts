@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls -l ~/todos/ | awk '{print $6, $7, $8, $9}'
