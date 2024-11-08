@@ -1,5 +1,0 @@
-#!/bin/bash
-
-clear
-tmux clear-history -t $(tag-tmux-id)
-

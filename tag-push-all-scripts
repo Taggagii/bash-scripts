@@ -1,6 +1,0 @@
-#!/bin/bash
-
-git add /usr/local/bin/tag-*
-git commit -m "Pushing scripts"
-git push
-
