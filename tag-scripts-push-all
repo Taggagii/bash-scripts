@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /usr/local/bin && git add tag-* && git commit -m "Pushing scripts" && git push 
+cd /usr/local/bin && git add tag-* && git add tag && git commit -m "Pushing scripts" && git push 
 
