@@ -11,7 +11,6 @@ fi
 echo $filename
 
 if [ ! -f "$root$filename" ]; then
-	echo "Creating new thing yeah"
 	touch "$root$filename"
 	echo -e "$(tag-date)\n\n" > "$root$filename"
 fi
