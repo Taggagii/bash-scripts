@@ -1,0 +1,16 @@
+#!/bin/bash
+
+root="$HOME/todos/"
+filename="$1"
+
+if [ -z "$filename" ]; then
+ 	# didn't provide name, default to today's date
+	filename="$(tag-date).txt"
+fi
+
+echo $filename
+
+if [ ! -f "$root$filename" ]; then
+	touch "$root$filename"
+	echo -e "$(tag-date)\n\n" > "$root$filename"
+fi

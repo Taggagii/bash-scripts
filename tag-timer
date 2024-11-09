@@ -1,0 +1,25 @@
+startingTime=$((30 * 60))
+
+if [ $# -eq 1 ]
+then
+	if [[ $1 =~ ^[0-9]+$ ]]
+	then
+		startingTime=$(($1 * 60))
+	fi
+fi
+
+for ((i = startingTime; i >= 0; i--))
+do 
+	minutes=$((i / 60))
+	seconds=$((i - minutes * 60))
+	printf "\r%4d minutes %2d seconds" "$minutes" "$seconds"
+
+	sleep 1
+done
+
+ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
+ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
+ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
+
+say -v Bells 'allen keys'
+
