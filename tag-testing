@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+root="$HOME/todos"
+
+cd "$root" || exit
+
+tag-todo-list
+read -e -p "Select a file: " filename
+
+cd - /dev/null
+
+echo "input is: $filename"

@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo $(date '+%Y-%m-%d')
+backset=${1:-0}
+
+echo $(date -j -v -${backset}d '+%Y-%m-%d')

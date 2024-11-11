@@ -1,0 +1,25 @@
+#!/bin/bash
+
+root="$HOME/todos/"
+
+filename="$(tag-date).txt"
+backset=1
+
+while true; do
+	filename_pullback="$(tag-date $backset).txt"
+
+	if [ -f "$root$filename_pullback" ]; then
+		break
+	fi
+
+	((backset++))
+done
+
+echo $filename
+echo '-------------'
+echo $filename_pullback
+
+if [ ! -f "$root$filename" ]; then
+	echo -e "$(tag-date)\n\n" > "$root$filename"
+	cat "$root$filename_pullback" | tail -n +3 >> "$root$filename"
+fi
