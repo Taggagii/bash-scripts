@@ -3,22 +3,43 @@ commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
 
 filter_params=()
 input_params=()
+taking_input=false
 
-done_filter=false
 verbose=false
 quiet=false
+as_source=false
+
+show_help() {
+		echo "Usage: $0 [OPTIONS] FILTER_PARAMS [-i|--input INPUT_PARAMS]"
+    echo
+    echo "Options:"
+    echo "  -i, --input               Mark the start of filter parameters"
+    echo "  -v, --verbose             Enable verbose output"
+    echo "  -q, --quiet               Suppress output of selected command"
+    echo "  -s, --source              Prefix selected command with 'source'"
+    echo "  -h, --help                Show this help message and exit"
+    echo
+    echo "FILTER_PARAMS are used to select which command to run."
+    echo "INPUT_PARAMS are the parameters to pass to the selected command."
+    echo
+}
 
 for param in "$@"; do
-	if [ $param = '-i' ]; then
-		done_filter=true
-	elif [ $param = '-v' ]; then
-		verbose=true
-	elif [ $param = '-q' ]; then
-		quiet=true
-	elif [ "$done_filter" = false ]; then
-		filter_params+=("$param")
-	else
+	if [ "$taking_input" = true ]; then
 		input_params+=("$param")
+	elif [ "$param" = "-h" ] || [ "$param" = "--help" ]; then
+		show_help
+		exit 0
+	elif [ "$param" = "-i" ] || [ "$param" = "--input" ]; then
+		taking_input=true
+	elif [ "$param" = "-v" ] || [ "$param" = "--verbose" ]; then
+		verbose=true
+	elif [ "$param" = "-q" ] || [ "$param" = "--quiet" ]; then
+		quiet=true
+	elif [ "$param" = "-s" ] || [ "$param" = "--source" ]; then
+		as_source=true
+	else
+		filter_params+=("$param")
 	fi
 done
 
@@ -63,14 +84,19 @@ if [ "$verbose" = true ]; then
 	echo "Input params: ${input_params[@]}"
 fi
 
-if cat "/usr/local/bin/$commands" | tag-scripts-takes-input > /dev/null && [ "$done_filter" = false ] ; then
+if cat "/usr/local/bin/$commands" | tag-scripts-takes-input > /dev/null && [ "$taking_input" = false ] ; then
 	echo "ERROR: Command expects input but none was found"
 	exit 1
 fi
 
+prefix=""
+if [ "$as_source" = true ]; then
+	prefix="source"
+fi
+
 if [ "$quiet" = true ]; then
-	$commands "${input_params[@]}" > /dev/null 2>&1 &
+	$prefix $commands "${input_params[@]}" > /dev/null 2>&1 &
 else
-	$commands ${input_params[@]}
+	$prefix $commands ${input_params[@]}
 fi
 
