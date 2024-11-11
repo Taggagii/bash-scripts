@@ -24,12 +24,15 @@ if cat "/usr/local/bin/$commands" | tag-scripts-takes-input > /dev/null; then
 	if [[ -t 0 ]]; then
 		echo "Enter input for the command (or press Enter to skip):"
 	fi
+
 	read input
 fi
+
+echo "Running $selected_command with input '$input'"
 
 if [ -z "$input" ]; then
     $selected_command
 else
-    $selected_command "$input"
+		$selected_command "$input"
 fi
 
