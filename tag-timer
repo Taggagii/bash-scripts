@@ -1,4 +1,9 @@
+#!/bin/bash
+# optional
+
+
 startingTime=$((30 * 60))
+
 
 if [ $# -eq 1 ]
 then

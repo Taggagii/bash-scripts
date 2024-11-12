@@ -1,4 +1,5 @@
 #!/bin/bash
+# optional
 
 if [ -z "$1" ]; then
 	temp_dir=$(mktemp -d)

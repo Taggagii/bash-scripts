@@ -84,7 +84,7 @@ if [ "$verbose" = true ]; then
 	echo "Input params: ${input_params[@]}"
 fi
 
-if cat "/usr/local/bin/$commands" | tag-scripts-takes-input > /dev/null && [ "$taking_input" = false ] ; then
+if cat "/usr/local/bin/$commands" | tag-scripts-takes-input > /dev/null && [ "$taking_input" = false ] && head -n 2 "/usr/local/bin/$commands" | tail -n 1 | grep -vi "optional"; then
 	echo "ERROR: Command expects input but none was found"
 	exit 1
 fi
