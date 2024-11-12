@@ -17,6 +17,8 @@ cd $temp_dir
 
 read -e -p "Select something: " selection
 
+echo "You selected: $selection"
+
 cd - > /dev/null
 
 rm -rf $temp_dir
