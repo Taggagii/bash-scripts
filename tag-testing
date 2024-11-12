@@ -1,13 +1,24 @@
 #!/bin/bash
 
+temp_dir=$(mktemp -d)
 
-root="$HOME/todos"
+# options=("testing" "things" "now")
+options=$(tmux list-sessions -F "#{session_name}")
 
-cd "$root" || exit
+cd $temp_dir
 
-tag-todo-list
-read -e -p "Select a file: " filename
 
-cd - /dev/null
+for option in $options; do
+	echo "Adding option $option"
+	touch "$option"
+done
 
-echo "input is: $filename"
+cd $temp_dir
+
+read -e -p "Select something: " selection
+
+cd - > /dev/null
+
+rm -rf $temp_dir
+
+

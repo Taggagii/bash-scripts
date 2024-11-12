@@ -1,0 +1,6 @@
+#!/bin/bash
+
+input=$(cat)
+
+echo $input
+echo $input | sed 's/./-/g'

@@ -16,7 +16,7 @@ while true; do
 done
 
 echo $filename
-echo '-------------'
+echo '^^^^^^^^^^^^^^'
 echo $filename_pullback
 
 if [ ! -f "$root$filename" ]; then
