@@ -1,4 +1,5 @@
 #!/bin/bash
+# optional
 
 root="$HOME/todos/"
 filename="$1"
