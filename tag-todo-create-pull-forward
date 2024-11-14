@@ -2,16 +2,16 @@
 
 root="$HOME/todos/"
 
-filename="$(tag-date).txt"
+filename="$(tag-date)"
 backset=1
 
 while true; do
-	filename_pullback="$(tag-date $backset).txt"
+	filename_pullback="$(tag-date $backset)"
 
 	if [ -f "$root$filename_pullback" ]; then
 		break
 	fi
-
+tag-create
 	((backset++))
 done
 

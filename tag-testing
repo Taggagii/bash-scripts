@@ -1,26 +1,10 @@
 #!/bin/bash
 
-temp_dir=$(mktemp -d)
+tag-timer & 
+process_pid=$!
 
-# options=("testing" "things" "now")
-options=$(tmux list-sessions -F "#{session_name}")
+sleep 5
+kill $process_pid
 
-cd $temp_dir
-
-
-for option in $options; do
-	echo "Adding option $option"
-	touch "$option"
-done
-
-cd $temp_dir
-
-read -e -p "Select something: " selection
-
-echo "You selected: $selection"
-
-cd - > /dev/null
-
-rm -rf $temp_dir
 
 

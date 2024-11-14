@@ -6,7 +6,7 @@ filename="$1"
 
 if [ -z "$filename" ]; then
  	# didn't provide name, default to today's date
-	filename="$(tag-date).txt"
+	filename="$(tag-date)"
 fi
 
 echo $filename
