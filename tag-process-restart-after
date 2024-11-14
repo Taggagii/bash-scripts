@@ -1,10 +1,12 @@
 #!/bin/bash
 
+time="${2:-3600}"
+
 while true; do
 	$1 & 
 	process_pid=$!
 
-	(sleep "$2" && kill $process_pid && echo "Restarting process") &
+	(sleep "$time" && kill $process_pid && echo "Restarting process") &
 	killer_pid=$!
 
 	cleanup() {
@@ -17,7 +19,4 @@ while true; do
 
 	wait $process_pid
 done
-
-
-
 
