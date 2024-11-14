@@ -95,8 +95,8 @@ if [ "$as_source" = true ]; then
 fi
 
 if [ "$quiet" = true ]; then
-	$prefix $commands "${input_params[@]}" > /dev/null 2>&1 &
+	$prefix $commands ${input_params[@]} > /dev/null 2>&1 &
 else
-	$prefix $commands ${input_params[@]}
+	$prefix $commands "${input_params[@]}"
 fi
 
