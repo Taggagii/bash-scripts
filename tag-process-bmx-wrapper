@@ -1,0 +1,18 @@
+#!/bin/bash
+
+time="${2:-3600}"
+
+$1 &
+process_pid=$!
+
+while true; do
+	cleanup() {
+		kill -TERM "$process_pid"
+		break
+	}
+	trap cleanup SIGINT
+
+	bmx write
+
+	sleep "$time"
+done

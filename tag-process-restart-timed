@@ -1,0 +1,65 @@
+#!/bin/bash
+
+time="${2:-3600}"
+port=3102
+
+wait_for_port_release() {
+    port=$1
+    while lsof -i :$port >/dev/null; do
+        echo "Port $port is still in use, waiting..."
+        sleep 1
+    done
+}
+
+while true; do
+	$1 & 
+	process_pid=$!
+
+	cleanup() {
+		kill -TERM "$process_pid"
+		# kill "$killer_pid"
+		break
+	}
+
+	trap cleanup SIGINT
+
+	sleep "$time"
+
+	echo 'killing'
+
+	kill -- -$process_pid
+	wait_for_port_release "$port"
+
+	echo "what"
+
+done
+
+	# while kill -0 $process_pid 2>/dev/null; do
+	# 	echo "killing it $process_pid"
+	# 	ps -p $process_pid
+	# 	kill $process_pid 2>/dev/null
+	# 	sleep 1                 
+	# done
+
+	# echo "process killed"
+	# ps -p $process_pid
+	# echo "waiting a bit"
+	# sleep 5
+	# echo "restarting"
+
+
+
+	#
+	#
+	# (sleep "$time" && kill -TERM $process_pid && echo "Restarting process") &
+	# killer_pid=$!
+
+	#
+	# wait $process_pid
+	# wait $killer_pid
+	# sleep 5
+	#
+	# kill $process_pid
+	# kill $killer_pid
+
+
