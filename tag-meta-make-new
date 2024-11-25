@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -e "$1" ]; then
+	echo "File already exists"
+	exit 1
+fi
+
+
+echo "#!/bin/bash" >> "$1"
+
+tag-meta-make-exec
+
+nvim "$1"
