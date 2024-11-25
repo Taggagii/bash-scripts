@@ -1,15 +1,17 @@
 #!/bin/bash
 
 time="${2:-3600}"
-port=3102
 
-wait_for_port_release() {
-    port=$1
-    while lsof -i :$port >/dev/null; do
-        echo "Port $port is still in use, waiting..."
-        sleep 1
-    done
-}
+
+# port=3102
+
+# wait_for_port_release() {
+#     port=$1
+#     while lsof -i :$port >/dev/null; do
+#         echo "Port $port is still in use, waiting..."
+#         sleep 1
+#     done
+# }
 
 while true; do
 	$1 & 
@@ -23,14 +25,18 @@ while true; do
 
 	trap cleanup SIGINT
 
+	echo "---things---"
+	echo $process_pid
+
 	sleep "$time"
 
 	echo 'killing'
 
-	kill -- -$process_pid
-	wait_for_port_release "$port"
-
-	echo "what"
+	# kill -TERM $process_pid
+	# pkill -P $$
+	# kill $(ps -s $$ -o pid=)
+	
+	tag killer -i "koa-app"
 
 done
 
