@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /usr/local/bin
+
 if [ -e "$1" ]; then
 	echo "File already exists"
 	exit 1

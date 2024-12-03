@@ -11,7 +11,6 @@ while true; do
 	if [ -f "$root$filename_pullback" ]; then
 		break
 	fi
-tag-create-blank
 	((backset++))
 done
 

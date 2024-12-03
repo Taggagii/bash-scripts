@@ -36,7 +36,7 @@ while true; do
 	# pkill -P $$
 	# kill $(ps -s $$ -o pid=)
 	
-	tag killer -i "koa-app"
+	tag-killer -i "koa-app"
 
 done
 
