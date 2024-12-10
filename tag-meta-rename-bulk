@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# take in a filter condition to find files by
+filter_condition=$1
+
+# take in word to replace
+word_to_replace=$2
+
+# take in word to replace it with
+word_to_replace_with=$3
+
+ls $filter_condition | xargs -I{} sh -c 'tag-meta-rename-single {} $(echo {} | sed "s/$0/$1/")' "$word_to_replace" "$word_to_replace_with"
