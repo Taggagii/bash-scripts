@@ -2,11 +2,11 @@
 
 root="$HOME/todos/"
 
-filename="$(tag-date)"
+filename="$(tag-general-date)"
 backset=1
 
 while true; do
-	filename_pullback="$(tag-date $backset)"
+	filename_pullback="$(tag-general-date $backset)"
 
 	if [ -f "$root$filename_pullback" ]; then
 		break
@@ -19,6 +19,6 @@ echo $filename_pullback | sed 's/./^/g'
 echo $filename_pullback
 
 if [ ! -f "$root$filename" ]; then
-	echo -e "$(tag-date)\n\n" > "$root$filename"
+	echo -e "$(tag-general-date)\n\n" > "$root$filename"
 	cat "$root$filename_pullback" | tail -n +3 >> "$root$filename"
 fi

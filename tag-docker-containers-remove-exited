@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker rm -f $(tag-docker-containers-resolve Exited)

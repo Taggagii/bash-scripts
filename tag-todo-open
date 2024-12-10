@@ -9,7 +9,7 @@ read -e -p "Select a file: " filename
 cd - /dev/null
 
 if [ -z $filename ]; then
-	filename="$(tag-date)"
+	filename="$(tag-general-date)"
 fi
 
 if [ ! -f "$root$filename" ]; then

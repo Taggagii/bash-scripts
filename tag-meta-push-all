@@ -1,4 +1,7 @@
 #!/bin/bash
+# optional
 
-cd /usr/local/bin && git add tag-* && git add tag && git commit -m "Pushing scripts" && git push 
+commitMessage="${1:-Updating scripts}"
+
+cd /usr/local/bin && git add -u 'tag*' && git add 'tag*' && git commit -m "$commitMessage" && git push
 

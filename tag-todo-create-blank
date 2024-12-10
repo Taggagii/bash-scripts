@@ -6,12 +6,12 @@ filename="$1"
 
 if [ -z "$filename" ]; then
  	# didn't provide name, default to today's date
-	filename="$(tag-date)"
+	filename="$(tag-general-date)"
 fi
 
 echo $filename
 
 if [ ! -f "$root$filename" ]; then
 	touch "$root$filename"
-	echo -e "$(tag-date)\n\n" > "$root$filename"
+	echo -e "$(tag-general-date)\n\n" > "$root$filename"
 fi
