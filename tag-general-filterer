@@ -1,1 +1,48 @@
 #!/bin/bash
+
+inputs=$(cat)
+
+input_params=()
+verbose=false
+
+for param in "$@"; do
+	if [ "$param" = "-v" ] || [ "$param" = "--verbose" ]; then
+		verbose=true
+	else
+		input_params+=("$param")
+	fi
+done
+
+done=false
+for param in "${input_params[@]}"; do
+	if [ "$done" = true ]; then
+		if [ "$verbose" = true ]; then
+			>&2 echo "WARNING: You have extra filter params"
+		fi
+		break
+	fi
+
+	inputs=$(echo "$inputs" | grep $param)
+	amount=$(echo "$inputs" | wc -w)
+
+	if [ $amount -eq 1 ]; then
+		done=true
+	fi
+done
+
+if [ $amount -gt 1 ]; then
+	>&2 echo "ERROR: You need more filter params"
+	>&2 echo "$inputs"
+	exit 1
+fi
+
+if [ $amount -eq 0 ]; then
+	>&2 echo "ERROR: No input matches your filter params"
+	exit 1
+fi
+
+if [ "$verbose" = true ]; then
+	>&2 echo "Selected value: $inputs"
+fi
+
+echo "$inputs"

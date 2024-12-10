@@ -51,31 +51,10 @@ if [ ${#filter_params[@]} -eq 0 ]; then
 	exit 1
 fi
 
-done=false
-for param in "${filter_params[@]}"; do
-	if [ "$done" = true ]; then
-		if [ "$verbose" = true ]; then
-			echo "WARNING: You have extra filter params"
-		fi
-		break
-	fi
+commands=$(echo "$commands" | tag-general-filterer ${filter_params[@]})
+filter_error=$?
 
-	commands=$(echo "$commands" | grep $param)
-	amount=$(echo "$commands" | wc -w)
-
-	if [ $amount -eq 1 ]; then
-		done=true
-	fi
-done
-
-if [ $amount -gt 1 ]; then
-	echo "ERROR: You need more filter params"
-	echo "$commands"
-	exit 1
-fi
-
-if [ $amount -eq 0 ]; then
-	echo "ERROR: No command matches your filter params"
+if [ $filter_error -ne 0 ]; then
 	exit 1
 fi
 
