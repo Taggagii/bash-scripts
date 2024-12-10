@@ -1,8 +1,12 @@
 #!/bin/bash
 
-commands=$(ls /usr/local/bin/tag-* | xargs -i{} basename {})
+commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
+commands=$(echo "$commands" | tag-general-filterer "$@")
+filter_error=$?
 
-commands=$(echo "$commands" | tag-general-filterer $@)
+if [ $filter_error -ne 0 ]; then
+	exit 1
+fi
 
-echo "$commands"
+nvim $commands
 
