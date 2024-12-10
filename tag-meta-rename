@@ -8,7 +8,7 @@ current_filename=$1
 # we'll also take in the filename that we want to change this to
 desired_filename=$2
 
-# we'll then first check if the current on exists
+# we'll then first check if the current one exists
 if [ ! -e $current_filename ]; then
 	echo "There is no file named '$current_filename'"
 	exit 1
@@ -24,22 +24,19 @@ fi
 # occurances=$(grep -o "tag[1-9]" $(ls tag-*))
 occurances=$(grep "$current_filename" $(ls tag-*))
 
-if [ -n "$occurances" ]; then
-	echo "Found the following occurances of '$current_filename' that need changing"
-	echo "$occurances"
+for file in tag-*; do
+	if grep -q "$current_filename" "$file"; then
+		echo "$file uses $current_filename. Updating usages"  
+		cp "$file" "$file.bak"
 
-	for file in tag-*; do
-		if grep -q "$current_filename" "$file"; then
-			cp "$file" "$file.bak"
+		sed -i "" "s/$current_filename/$desired_filename/g" "$file"
 
-			sed -i "" "s/$current_filename/$desired_filename/g" "$file"
+		echo "Updated $file"
 
-			echo "Updated $file"
-
-			diff --side-by-side "$file.bak" "$file"
-		fi
-	done
-fi
+		diff --side-by-side --suppress-common-lines "$file.bak" "$file"
+		rm "$file.bak"
+	fi
+done
 
 echo "Renaming '$current_filename' to '$desired_filename'"
 

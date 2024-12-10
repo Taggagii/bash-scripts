@@ -2,34 +2,34 @@
 
 
 
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
 
 
 
 
 echo othe rthings
 
-echo things && tag-new-testing
+echo things && tag-testing
 
 
-echo $(tag-new-testing)
+echo $(tag-testing)
 
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
-tag-new-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
+tag-testing
 echo testing though
 
 
-tag-new-testing
-tag-new-testing
-tag-new-testing
+tag-testing
+tag-testing
+tag-testing
 
 
