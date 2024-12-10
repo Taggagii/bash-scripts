@@ -1,1 +1,10 @@
 #!/bin/bash
+
+# lists the commands that you can run in a given directory
+if [ ! -e "package.json" ]; then
+	echo "File does not exist"
+fi
+
+scripts=$(jq -r '.scripts | keys[]' package.json)
+echo "$scripts"
+
