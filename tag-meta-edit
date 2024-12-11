@@ -8,5 +8,5 @@ if [ $filter_error -ne 0 ]; then
 	exit 1
 fi
 
-nvim $commands
+nvim "/usr/local/bin/$commands"
 

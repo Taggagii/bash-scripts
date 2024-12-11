@@ -22,9 +22,7 @@ do
 	sleep 1
 done
 
-ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
-ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
-ps aux | grep Spotify | awk '{ print $2 }' | xargs kill
+tag-general-killer "Spotify"
 
-say -v Bells 'allen keys'
+say -v Bells $phrase
 
