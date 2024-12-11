@@ -23,7 +23,7 @@ for param in "${input_params[@]}"; do
 		break
 	fi
 
-	inputs=$(echo "$inputs" | grep $param)
+	inputs=$(echo "$inputs" | grep "\-$param")
 	amount=$(echo "$inputs" | wc -w)
 
 	if [ $amount -eq 1 ]; then
