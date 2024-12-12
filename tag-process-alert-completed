@@ -1,3 +1,12 @@
 #!/bin/bash
 
-eval "$1" && say "completed the task"
+eval "$1"
+error=$?
+
+if [ $error -eq 0 ]; then
+	say "Command: $1 completed successfully"
+else
+	say "Command: $1 failed"
+
+fi
+
