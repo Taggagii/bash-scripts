@@ -3,9 +3,9 @@
 temp_dir=$(mktemp -d)
 cd $temp_dir || exit 1
 
->&2 echo "Options:" 
+echo "Options:" 
 for param in $@; do
-	>&2 echo -e "\t$param"
+	echo -e "\t$param"
 	touch "$param"
 done
 
@@ -15,4 +15,4 @@ cd - > /dev/null
 
 rm -rf "$temp_dir"
 
->&3 echo "$selection"
+echo "$selection" >&3
