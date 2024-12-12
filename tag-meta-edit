@@ -3,10 +3,20 @@
 commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
 commands=$(echo "$commands" | tag-general-filterer "$@")
 filter_error=$?
+amount=$(echo "$commands" | wc -w)
 
 if [ $filter_error -ne 0 ]; then
 	exit 1
 fi
 
-nvim "/usr/local/bin/$commands"
+if [ $amount -eq 1 ]; then
+	nvim "/usr/local/bin/$commands"
+else
+	echo "ERROR: You need more filter params"
+	echo "$commands"
+	exit 1
+fi
+
+
+
 
