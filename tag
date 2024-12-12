@@ -51,11 +51,23 @@ if [ ${#filter_params[@]} -eq 0 ]; then
 	exit 1
 fi
 
-commands=$(echo "$commands" | tag-general-filterer ${filter_params[@]})
-filter_error=$?
+commands=$(echo "$commands" | tag-general-filterer ${filter_params[@]} -f "\-")
+amount=$(echo "$commands" | wc -w)
 
-if [ $filter_error -ne 0 ]; then
+
+if [ $amount -gt 1 ]; then
+	>&2 echo "ERROR: You need more filter params"
+	>&2 echo "$commands"
 	exit 1
+fi
+
+if [ $amount -eq 0 ]; then
+	>&2 echo "ERROR: No command matches your filter params"
+	exit 1
+fi
+
+if [ "$verbose" = true ]; then
+	>&2 echo "Selected value: $inputs"
 fi
 
 if [ "$verbose" = true ]; then
