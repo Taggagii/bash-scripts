@@ -2,29 +2,34 @@
 # optional
 
 if [ -z "$1" ]; then
-	temp_dir=$(mktemp -d)
+	# temp_dir=$(mktemp -d)
 
 	options=$(tmux list-sessions -F "#{session_name}")
 
-	cd $temp_dir
+	exec 3> >(value)
+	selection=$(tag-general-autocompleter "${options[@]}")
+	echo "Tag attach selection $selection"
 
-	echo "Options:"
-	for option in $options; do
-		echo -e "\t$option"
-		touch "$option"
-	done
 
-	cd $temp_dir
+	# cd $temp_dir
 
-	read -e -p "Select something: " selection
+	# echo "Options:"
+	# for option in $options; do
+	# 	echo -e "\t$option"
+	# 	touch "$option"
+	# done
+	#
+	# cd $temp_dir
 
-	echo "You selected: $selection"
-
-	cd - > /dev/null
-
-	rm -rf $temp_dir
-
-	tmux attach -t $selection
+	# read -e -p "Select something: " selection
+	#
+	# echo "You selected: $selection"
+	#
+	# cd - > /dev/null
+	#
+	# rm -rf $temp_dir
+	#
+	# tmux attach -t $selection
 else
 	tmux attach -t $1
 fi

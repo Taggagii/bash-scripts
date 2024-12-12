@@ -1,0 +1,14 @@
+#!/bin/bash
+
+capture_location="/tmp/meta_capture"
+
+if [ -e "$capture_location" ]; then
+	rm "$capture_location"
+fi
+
+exec 3> >(cat > "$capture_location")
+eval "$1"
+exec 3>&-
+output=$(< "$capture_location")
+
+

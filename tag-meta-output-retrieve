@@ -1,0 +1,7 @@
+#!/bin/bash
+
+capture_location="/tmp/meta_capture"
+
+echo "$(< "$capture_location")"
+rm "$capture_location"
+

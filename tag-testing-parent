@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "I am logging from the parent"
+
+
+# i want a command that basically i wrap a function in
+# and then i guess it would execute that function normally and
+# then i would have another function called output retrieve
+# that would just log from that file and delete it
+# and if that file already exists on input capture it should delete it
+#
+
+tag-meta-output-capture "tag-testing-child"
+
+output=$(tag-meta-output-retrieve)
+
+
+echo "This is the output of the child"
+echo "$output"
