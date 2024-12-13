@@ -1,0 +1,10 @@
+#!/bin/bash
+# optional
+
+commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
+commands=$(echo "$commands" | tag-general-filterer "$@" -f "\-")
+filter_error=$?
+amount=$(echo "$commands" | wc -w)
+
+echo "$commands"
+
