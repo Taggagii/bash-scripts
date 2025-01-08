@@ -1,3 +1,4 @@
 #!/bin/bash
 
-chmod u+x /usr/local/bin/tag-*
+root=$(tag-meta-parent-directory)
+chmod u+x "$root"/tag-*

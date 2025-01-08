@@ -3,5 +3,5 @@
 
 commitMessage="${1:-Updating scripts}"
 
-cd /usr/local/bin && git add -u 'tag*' && git add 'tag*' && git commit -m "$commitMessage" && git push
+cd $(tag-meta-parent-directory) && git add -u 'tag*' && git add 'tag*' && git commit -m "$commitMessage" && git push
 

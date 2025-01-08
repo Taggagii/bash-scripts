@@ -1,6 +1,7 @@
 #!/bin/bash
 
-commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
+root=$(tag-meta-parent-directory)
+commands=$(ls "$root"/tag-* | xargs -I{} basename {})
 commands=$(echo "$commands" | tag-general-filterer "$@")
 filter_error=$?
 amount=$(echo "$commands" | wc -w)
@@ -10,7 +11,7 @@ if [ $filter_error -ne 0 ]; then
 fi
 
 if [ $amount -eq 1 ]; then
-	nvim "/usr/local/bin/$commands"
+	nvim "$root/$commands"
 else
 	echo "ERROR: You need more filter params"
 	echo "$commands"

@@ -1,5 +1,6 @@
 #!/bin/bash
-commands=$(ls /usr/local/bin/tag-* | xargs -I{} basename {})
+root=$(tag-meta-parent-directory)
+commands=$(ls "$root"/tag-* | xargs -I{} basename {})
 
 filter_params=()
 input_params=()
@@ -75,7 +76,7 @@ if [ "$verbose" = true ]; then
 	echo "Input params: ${input_params[@]}"
 fi
 
-if cat "/usr/local/bin/$commands" | tag-meta-takes-input > /dev/null && [ "$taking_input" = false ] && head -n 2 "/usr/local/bin/$commands" | tail -n 1 | grep -vi "optional"; then
+if cat "$root/$commands" | tag-meta-takes-input > /dev/null && [ "$taking_input" = false ] && head -n 2 "$root/$commands" | tail -n 1 | grep -vi "optional"; then
 	echo "ERROR: Command expects input but none was found"
 	exit 1
 fi
