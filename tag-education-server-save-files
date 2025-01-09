@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp -r $HOME/server /mnt/c/wsl-server-file-backup
+
