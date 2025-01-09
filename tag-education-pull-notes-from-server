@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# so, the notes are currently living on the server. we'd need to connect to the ssh server and then scp the notes back to us
+# on the server they live at
+
