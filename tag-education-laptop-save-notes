@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd $HOME/documents
+git add .
+git commit -m "pushing notes"
+git push
+

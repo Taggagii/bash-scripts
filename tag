@@ -8,10 +8,10 @@ taking_input=false
 
 verbose=false
 quiet=false
-as_source=false
+as_source=true
 
 show_help() {
-		echo "Usage: $0 [OPTIONS] FILTER_PARAMS [-i|--input INPUT_PARAMS]"
+	echo "Usage: $0 [OPTIONS] FILTER_PARAMS [-i|--input INPUT_PARAMS]"
     echo
     echo "Options:"
     echo "  -i, --input               Mark the start of filter parameters"

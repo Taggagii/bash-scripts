@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SSHLOCATION="joshu@107.179.134.247"
+
+ssh $SSHLOCATION
+
