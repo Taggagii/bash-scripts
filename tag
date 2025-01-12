@@ -86,9 +86,13 @@ if [ "$as_source" = true ]; then
 	prefix="source"
 fi
 
+set -- ${input_params[@]}
+
 if [ "$quiet" = true ]; then
 	$prefix $commands ${input_params[@]} > /dev/null 2>&1 &
 else
-	$prefix $commands "${input_params[@]}"
+	# $prefix $commands "${input_params[@]}" # because we're only doing source now we don't need this
+	$prefix $commands
 fi
+
 

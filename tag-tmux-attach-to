@@ -1,6 +1,10 @@
 #!/bin/bash
 # optional
 
+echo "running tag attach"
+
+echo "$1"
+
 if [ -z "$1" ]; then
 	# temp_dir=$(mktemp -d)
 
