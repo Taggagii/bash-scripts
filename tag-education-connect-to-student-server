@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SSHLOCATION="j7dietri@linux.student.cs.uwaterloo.ca"
+
+ssh $SSHLOCATION
+
