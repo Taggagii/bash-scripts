@@ -18,8 +18,10 @@ while true; do
 	new_change_time=$(get_modification_time)
 
 	if [ $last_change_time -ne $new_change_time ]; then
+		echo "File changed updating"
+		tmux kill-session -t testing
 		last_change_time=$new_change_time
-		$command_to_run
+		tag-general-run-in-tmux testing "$command_to_run"
 	fi
 
 	sleep 1
