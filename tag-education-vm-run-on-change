@@ -12,6 +12,7 @@ get_modification_time() {
 	echo $(stat -c '%Y' $filename)
 }
 
+echo "Watching $filename"
 last_change_time=$(get_modification_time)
 while true; do
 	new_change_time=$(get_modification_time)
