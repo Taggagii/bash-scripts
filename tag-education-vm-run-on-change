@@ -21,7 +21,7 @@ while true; do
 		echo "File changed updating"
 		tmux kill-session -t testing
 		last_change_time=$new_change_time
-		tag-general-run-in-tmux testing "$command_to_run && exit"
+		tag-general-run-in-tmux testing "$command_to_run"
 	fi
 
 	sleep 1
