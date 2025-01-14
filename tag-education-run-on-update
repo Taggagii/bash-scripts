@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "filename is"
+echo $1
+filename=$1
+command_to_run=$2
+
+echo "command"
+echo "$command_to_run"
+
+if [ ! -e $filename ]; then
+	echo "File does not exist"
+	exit 1
+fi
+
+get_modification_time() {
+	echo $(stat -c '%Y' $filename)
+}
+
+last_change_time=$(get_modification_time)
+while true; do
+	new_change_time=$(get_modification_time)
+
+	if [ $last_change_time -ne $new_change_time ]; then
+		last_change_time=$new_change_time
+		$command_to_run
+	fi
+
+	sleep 1
+done
+
+
+
+
+

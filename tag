@@ -73,7 +73,7 @@ fi
 
 if [ "$verbose" = true ]; then
 	echo "Selected command: $commands"
-	echo "Input params: ${input_params[@]}"
+	echo "Input params: $(IFS=','; echo "${input_params[*]}")"
 fi
 
 if cat "$root/$commands" | tag-meta-takes-input > /dev/null && [ "$taking_input" = false ] && head -n 2 "$root/$commands" | tail -n 1 | grep -vi "optional"; then
@@ -92,7 +92,7 @@ if [ "$quiet" = true ]; then
 	$prefix $commands ${input_params[@]} > /dev/null 2>&1 &
 else
 	# $prefix $commands "${input_params[@]}" # because we're only doing source now we don't need this
-	$prefix $commands
+	$prefix $commands "${input_params[@]}"
 fi
 
 
