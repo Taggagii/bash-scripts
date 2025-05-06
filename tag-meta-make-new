@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /usr/local/bin
+cd $(tag-meta-parent-directory)
 
 if [ -e "$1" ]; then
 	echo "File already exists"
