@@ -1,0 +1,20 @@
+{
+  "name": "bmx-faster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dotenv-encrypt": "dotenvx encrypt",
+    "dotenv-decrypt": "dotenvx decrypt",
+    "dotenv": "dotenvx run -f .env --",
+    "bmx-write": "npm run dotenv -- node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.44.0",
+    "child_process": "^1.0.2"
+  }
+}
