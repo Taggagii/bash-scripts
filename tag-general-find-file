@@ -1,0 +1,19 @@
+#!/bin/bash
+
+params=()
+capturing_exclude=false
+exclude=""
+
+for param in "$@"; do
+	if [ "$param" = "-e" ] || [ "$param" = "--exclude" ]; then
+		capturing_exclude=true
+	elif [ "$capturing_exclude" = true ]; then
+		exclude="$param"
+		capturing_exclude=false
+	else
+		params+=("$param")
+	fi
+done
+
+find . -path "$exclude" -prune -o -name "${params[@]}" -print
+

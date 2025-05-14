@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 params=()
 capturing_exclude=false
 exclude=""

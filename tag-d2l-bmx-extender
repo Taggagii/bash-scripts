@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Perform normal bmx functions
+bmx write
+
+# Extend behaviour
+BMX_FILE=".bmx"
+
+profile=$(grep "profile=" $BMX_FILE | awk -F'=' '{print $2}')
+region=$(grep "region=" $BMX_FILE | awk -F'=' '{print $2}')
+
+echo "AWS_PROFILE=$profile AWS_REGION=$region"
+
+
