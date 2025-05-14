@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dest="$(tag-meta-parent-directory)/bmx-faster/" 
+
+if [ ! -e ".bmx" ]; then
+	echo "There is no .bmx file"
+	exit 1
+fi
+
+cp .bmx $dest
+
+npm --prefix $dest run bmx-write
+
