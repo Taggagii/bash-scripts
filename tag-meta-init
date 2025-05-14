@@ -1,0 +1,26 @@
+#!/bin/bash
+
+CHECKSUM_DIR=".checksums"
+mkdir -p "$CHECKSUM_DIR"
+
+paths=$(find . -path "*node_modules" -prune -o -type f -name "package.json" -print)
+
+for path in $paths; do
+    dir=$(dirname "$path")
+
+    checksum=$(find "$dir" -type f -exec sha256sum {} + | sort | sha256sum)
+
+    checksumFile="$CHECKSUM_DIR/$dir"
+    if [ ! -f "$checksumFile" ]; then
+        touch $checksumFile
+    fi
+    comparedChecksum=$(cat $checksumFile)
+
+    if [ "$comparedChecksum" != "$checksum" ]; then
+        cd "$dir" || exit
+        npm install
+        cd - > /dev/null
+        checksum=$(find "$dir" -type f -exec sha256sum {} + | sort | sha256sum)
+        echo "$checksum" > "$checksumFile"
+    fi
+done
